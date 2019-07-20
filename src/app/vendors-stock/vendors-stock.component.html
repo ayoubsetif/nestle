@@ -4,7 +4,7 @@
 		<button mat-raised-button color="primary" (click)="dmsbtn.click()">Import Inventory Valuation</button>
 		
 		<input hidden  type='file' #erpbtn accept=".xlsx" (change)="uploadErpFile($event)">
-		<button mat-raised-button color="accent" (click)="erpbtn.click()">Import stock par emplacement(ERP)</button>
+		<button [disabled]="!dmsVStock.length" mat-raised-button color="accent" (click)="erpbtn.click()">Import stock par emplacement(ERP)</button>
 	</div>
 	<!-- <div class="right-btns-wrapper">
 		<button mat-raised-button color="primary" (click)="reset()">Reset</button>
