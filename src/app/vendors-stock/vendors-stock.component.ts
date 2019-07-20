@@ -41,6 +41,7 @@ export class VendorsStockComponent implements OnInit {
 				const deleteMetaText = _.drop(vendorList, 15);
 				this.splitIntoArrays(deleteMetaText);
 				this.vanIds = this.dmsVStock.map(m => m[0]).map(f => f['vanId']);
+				console.log('dms', this.dmsVStock);
 			};
 			fileReader.readAsArrayBuffer(this.file);
 		}
@@ -61,7 +62,6 @@ export class VendorsStockComponent implements OnInit {
 								element.push({
 									id: t[''],
 									name: t['_1'],
-									// quantity : t['_10'],
 									quantity: this.getEntity(t[''], t['_10'])
 								});
 							}
@@ -73,7 +73,6 @@ export class VendorsStockComponent implements OnInit {
 							element.push({
 								id: t[''],
 								name: t['_1'],
-								// quantity : t['_10'],
 								quantity: this.getEntity(t[''], t['_10'])
 							});
 						}
@@ -111,6 +110,7 @@ export class VendorsStockComponent implements OnInit {
 			});
 		});
 		this.getStocks(indexes, erp);
+		console.log('erp', this.erpVStock);
 		this.vendorsList = this.erpVStock.map(m => m[0]);
 	}
 
@@ -157,9 +157,14 @@ export class VendorsStockComponent implements OnInit {
 	}
 
 	getProduct(prod) {
-		const id = prod.split('[')[1].split(']')[0];
-		const name = _.trim(prod.split('[')[1].split(']')[1]);
-		return { id: id, name: name };
+		// this if is for setif stock make exception
+		if ((prod.includes('pack cereal')) || (prod.includes('Plan Marhaba')) || (prod.includes('PLAN MARHABA'))) {
+			return { id: null, name: null };
+		} else {
+			const id = prod.split('[')[1].split(']')[0];
+			const name = _.trim(prod.split('[')[1].split(']')[1]);
+			return { id: id, name: name };
+		}
 	}
 
 	getVan(value) {
@@ -200,27 +205,19 @@ export class VendorsStockComponent implements OnInit {
 			const m = dms.find(f => f['id'] === d['id']);
 			const r = erp.find(q => q['id'] === d['id']);
 			if (!m) {
-				const diffQuantity = r['quantity'] - 0;
-				d['quantity'] = diffQuantity;
+				d['quantity'] = r['quantity'] - 0;
 				d['dmsQuantity'] = 0;
 				d['erpQuantity'] = r['quantity'];
-				d['quantityCs'] = diffQuantity / this.product[d['id']].col;
 			} else if (!r) {
-				const diffQuantity = 0 - m['quantity'];
-				d['quantity'] = diffQuantity;
+				d['quantity'] = 0 - m['quantity'];
 				d['erpQuantity'] = 0;
-				d['quantityCs'] = diffQuantity / this.product[d['id']].col;
+				d['dmsQuantity'] = m['quantity'];
 			}	else {
 				d['erpQuantity'] = r['quantity'];
 				d['dmsQuantity'] = m['quantity'];
-				const diffQuantity = r['quantity'] - m['quantity'];
-				d['quantity'] = diffQuantity;
-				d['quantityCs'] = diffQuantity / this.product[d['id']].col;
+				d['quantity'] = r['quantity'] - m['quantity'];
 			}
 		});
 		return diff;
 	}
-
-
-
 }
