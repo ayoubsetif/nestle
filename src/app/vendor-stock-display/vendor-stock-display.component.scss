@@ -1,0 +1,24 @@
+table {
+  width: 100%;
+}
+.no-product {
+	display: flex;
+	width: 100%;
+	height: 300px;
+	align-items: center;
+	justify-content: center;
+}
+.message-no-product {
+	font-size: 20px;
+	border: solid 1px black;
+	padding: 44px;
+	border-radius: 50%;
+	background-color: #f1a9a9;
+}
+
+.bc-dms {
+	background-color: #e64848ba !important;
+}
+.bc-erp {
+	background-color: #646dd6e6 !important;
+}
