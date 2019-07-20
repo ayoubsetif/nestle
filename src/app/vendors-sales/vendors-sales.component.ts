@@ -20,6 +20,7 @@ export class VendorsSalesComponent implements OnInit {
 	compareArray = new ReplaySubject<any[]>(1);
 	product = product;
 	vendorsReturn = [];
+	vendors = {};
 
 	constructor(
 		private snackBar: MatSnackBar,
@@ -27,6 +28,7 @@ export class VendorsSalesComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+		this.vendors =  JSON.parse(localStorage.getItem('config'));
 	}
 
 	uploadFile(event) {
@@ -116,10 +118,10 @@ export class VendorsSalesComponent implements OnInit {
 						const aon = t[e].map(p => p['quantity']);
 						const sum = _.reduce(aon, function(a, b) { return a + b; }, 0);
 						if (sum < 0) {
-							Vreturn.push({ id: v, productId: t[e][0]['id'], name: t[e][0]['name'], total: sum, price: e });
+							Vreturn.push({ id: v, productId: t[e][0]['id'], name: t[e][0]['name'], total: sum, price: Number(e) });
 						} else {
 							aSale['sales'].push([
-								t[e][0]['id'], t[e][0]['name'], '', sum, e]
+								t[e][0]['id'], t[e][0]['name'], '', sum, Number(e)]
 							);
 						}
 					});
@@ -128,7 +130,7 @@ export class VendorsSalesComponent implements OnInit {
 					if (a['quantity'] > 0 ) {
 						aSale['sales'].push([a['id'], a['name'], '', a['quantity'], a['price']]);
 					} else {
-						Vreturn.push({ id: v, proudctId: a['id'], name: a['name'], total: a['quantity'], price: a['price'] });
+						Vreturn.push({ id: v, proudctId: a['id'], name: a['name'], total: a['quantity'], price: Number(a['price']) });
 					}
 				}
 			});
@@ -146,7 +148,7 @@ export class VendorsSalesComponent implements OnInit {
 		if (UnitPriceAfterDiscount === 0.00) {
 			UnitPriceAfterDiscount = 0.01;
 		}
-		return UnitPriceAfterDiscount.toFixed(2);
+		return Number(UnitPriceAfterDiscount.toFixed(2));
 	}
 
 	getQuantity(id, quantity, uom) {
@@ -171,6 +173,38 @@ export class VendorsSalesComponent implements OnInit {
 			/* save to file */
 			XLSX.writeFile(wb, `${v.id}.xlsx`);
 		});
+	}
+
+	downloadGroupedSales() {
+		const vendorSales = JSON.parse(JSON.stringify(this.sales));
+		vendorSales.forEach(v => {
+			v.sales.forEach(sale => {
+				sale.unshift(
+					this.vendors[v.id]['Depot'], 'Nestlé', this.vendors[v.id]['vendeur'],
+					this.vendors[v.id]['codeClient'], this.vendors[v.id]['client'],
+					this.vendors[v.id]['emplacement']
+				);
+			});
+		});
+		const globalSales = _.flatten(vendorSales.map(m => m.sales));
+		globalSales.forEach(s => {
+			s[11] = s[9] * s[10];
+		});
+
+		globalSales.unshift([
+			'Entrepot ', 'Marque ', 'Vendeur',
+			'Code client', 'Client', 'Emplacement',
+			'Code Article', 'Article', 'Quantité conditionnée ',
+			'Quantité', 'Prix unitaire', 'Sous-total'
+		]);
+		const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(globalSales);
+
+		/* generate workbook and add the worksheet */
+		const wb: XLSX.WorkBook = XLSX.utils.book_new();
+		XLSX.utils.book_append_sheet(wb, ws, 'GlobalSales');
+
+		/* save to file */
+		XLSX.writeFile(wb, `Vente Globale.xlsx`);
 	}
 
 }

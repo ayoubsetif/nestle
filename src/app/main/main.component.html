@@ -1,3 +1,10 @@
+<input hidden  type='file' #btn accept=".xlsx" (change)="uploadConfigFile($event)">
+<button
+	mat-raised-button
+	color="primary"
+	(click)="btn.click()"
+>Import Config File</button>
+
 <button
 	mat-raised-button
 	color="primary"

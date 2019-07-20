@@ -12,7 +12,6 @@
 
 	<mat-form-field>
 		<mat-select [disabled]="!vendorsList.length" (selectionChange)="selectVendor($event)"  placeholder="Choose Vendor/s" multiple>
-			<!-- <mat-option value="0">All Detail Vendors</mat-option> -->
 			<mat-option *ngFor="let vendor of vendorsList" [value]="vendor">
 				{{vendor}}
 			</mat-option>
@@ -23,7 +22,7 @@
 
 	<div class="vs-import">
 		<button class="group-sales" mat-raised-button color="primary" (click)="download()" [disabled]="!sales.length">Download Single Files</button>
-		<button class="group-sales" mat-raised-button color="primary" (click)="downloadGroupedSales()" [disabled]="!sales.length">Download Grouped Sales</button>
+		<button class="group-sales" mat-raised-button color="primary" (click)="downloadGroupedSales()" [disabled]="!sales.length || !vendors">Download Grouped Sales</button>
 	</div>
 
 </div>
