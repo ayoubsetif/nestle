@@ -20,7 +20,7 @@ export class VendorStockDisplayComponent implements OnInit {
 	ngOnChanges() {
 		if (this.products) {
 			this.initialAppearance = true;
-			this.data = this.products;
+			this.data = this.products.filter(f => f.quantity !== 0);
 		}
 	}
 
