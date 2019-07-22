@@ -17,6 +17,7 @@ import { VendorStockDisplayComponent } from './vendor-stock-display/vendor-stock
 import { VendorsSalesComponent } from './vendors-sales/vendors-sales.component';
 import { DiffrenceSalesComponent } from './diffrence-sales/diffrence-sales.component';
 import { ReturnVendorComponent } from './return-vendor/return-vendor.component';
+import { VendorTransfertComponent } from './vendor-transfert/vendor-transfert.component';
 
 @NgModule({
 	declarations: [
@@ -27,7 +28,8 @@ import { ReturnVendorComponent } from './return-vendor/return-vendor.component';
 		VendorStockDisplayComponent,
 		VendorsSalesComponent,
 		DiffrenceSalesComponent,
-		ReturnVendorComponent
+		ReturnVendorComponent,
+		VendorTransfertComponent
 	],
 	imports: [
 		BrowserModule,
