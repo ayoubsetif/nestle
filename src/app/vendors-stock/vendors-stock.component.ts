@@ -50,15 +50,15 @@ export class VendorsStockComponent implements OnInit {
 	splitIntoArrays(table) {
 		const element = [];
 		table.forEach(e => {
-			if (e['Inventory Valuation Report'] === '') {
+			if (e['On Hand Qty'] === '') {
 				const separator = table.splice(table.indexOf(e) + 1);
 				table.forEach(el => {
-					const test = el['Inventory Valuation Report'];
+					const test = el['On Hand Qty'];
 					// this test for van
 					if (test && test.includes('VAN')) {
-						element.push({ vanId: 'V0' + el['Inventory Valuation Report'].slice(5, 7) , vanName: test  });
+						element.push({ vanId: 'V0' + el['On Hand Qty'].slice(5, 7) , vanName: test  });
 						table.forEach(t => {
-							if (t[''] && t[''] !== 'Product') {
+							if (t[''] && t[''] !== 'Product' && t[''] !== 'PrdCat2 :') {
 								element.push({
 									id: t[''],
 									name: t['_1'],
@@ -69,7 +69,7 @@ export class VendorsStockComponent implements OnInit {
 					} else if (test && test.includes('MN_WH')) {
 					element.push({ vanId: 'Stock' , vanName: 'DEPOT'  });
 					table.forEach(t => {
-						if (t[''] && t[''] !== 'Product') {
+						if (t[''] && t[''] !== 'Product' && t[''] !== 'PrdCat2 :') {
 							element.push({
 								id: t[''],
 								name: t['_1'],
