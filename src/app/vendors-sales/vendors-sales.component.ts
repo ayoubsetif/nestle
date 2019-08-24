@@ -197,7 +197,8 @@ export class VendorsSalesComponent implements OnInit {
 			'Code Article', 'Article', 'Quantité conditionnée ',
 			'Quantité', 'Prix unitaire', 'Sous-total'
 		]);
-		const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(globalSales);
+		// not optimal but why XD
+		const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(globalSales.filter(f => f[9] !== 0));
 
 		/* generate workbook and add the worksheet */
 		const wb: XLSX.WorkBook = XLSX.utils.book_new();

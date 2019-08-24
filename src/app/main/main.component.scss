@@ -1,0 +1,18 @@
+.main-btns {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	button {
+		width: 300px;
+		margin: 25px !important;
+		align-self: center;
+		font-size: 18px !important;
+	}
+}
+.logo-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 5%;
+}
