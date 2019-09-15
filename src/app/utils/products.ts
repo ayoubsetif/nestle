@@ -40,5 +40,6 @@ export const product = {
 	'12351411': {col: 16, tva: 1.19 }, // golden flakes 16x150
 	'12291703': {col: 8, tva: 1.19 }, // cereal lion 8x250g
 	'12363181': {col: 16, tva: 1.19 }, // cereal lion 16x400g
-	'12240504': {col: 12, tva: 1 } // GLORIA Caramel 12x397g DZ
+	'12240504': {col: 12, tva: 1 }, // GLORIA Caramel 12x397g DZ
+	'12391382': {col: 9, tva: 1.09 } // Cerelac 5 cer
 };
