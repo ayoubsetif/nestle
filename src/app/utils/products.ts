@@ -43,5 +43,6 @@ export const product = {
 	'12240504': {col: 12, tva: 1 }, // GLORIA Caramel 12x397g DZ
 	'12391382': {col: 9, tva: 1.09 }, // Cerelac 5 cer
 	'12391381': {col: 9, tva: 1.09 }, // CERELAC WheFruits FFAB676-1 9x250g DZ
-	'12407275': {col: 12, tva: 1.19 } // gold crema 100g
+	'12407275': {col: 12, tva: 1.19 }, // gold crema 100g
+	'12427772': {col: 36, tva: 1.19 } // 3en1 36
 };
