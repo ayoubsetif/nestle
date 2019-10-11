@@ -44,5 +44,6 @@ export const product = {
 	'12391382': {col: 9, tva: 1.09 }, // Cerelac 5 cer
 	'12391381': {col: 9, tva: 1.09 }, // CERELAC WheFruits FFAB676-1 9x250g DZ
 	'12407275': {col: 12, tva: 1.19 }, // gold crema 100g
-	'12427772': {col: 36, tva: 1.19 } // 3en1 36
+	'12427772': {col: 36, tva: 1.19 }, // 3en1 36
+	'12432519': {col: 24, tva: 1.19 } // RTD PROMO
 };
