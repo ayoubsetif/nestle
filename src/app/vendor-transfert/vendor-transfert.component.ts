@@ -112,6 +112,9 @@ export class VendorTransfertComponent implements OnInit {
 	}
 
 	getId(vendorName) {
+		if (vendorName.length === 7) {
+			vendorName = '12' + vendorName;
+		}
 		const slicedName = 'V0' + vendorName.slice(5, 7);
 		let vendor = null;
 		Object.keys(this.vendors).map(m => {

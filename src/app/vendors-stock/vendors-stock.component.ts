@@ -11,6 +11,7 @@ import { product } from '../utils/products';
 	styleUrls: ['./vendors-stock.component.scss']
 })
 export class VendorsStockComponent implements OnInit {
+	warehousName = '';
 
 	constructor(
 		private snackBar: MatSnackBar,
@@ -38,6 +39,7 @@ export class VendorsStockComponent implements OnInit {
 			fileReader.onload = (e) => {
 				const worksheet = this.excelService.readFile(fileReader);
 				const vendorList = XLSX.utils.sheet_to_json(worksheet, {raw: true });
+				this.warehousName = vendorList[4]['_2'];
 				const deleteMetaText = _.drop(vendorList, 15);
 				this.splitIntoArrays(deleteMetaText);
 				this.vanIds = this.dmsVStock.map(m => m[0]).map(f => f['vanId']);
@@ -56,7 +58,11 @@ export class VendorsStockComponent implements OnInit {
 					const test = el['On Hand Qty'];
 					// this test for van
 					if (test && test.includes('VAN')) {
-						element.push({ vanId: 'V0' + el['On Hand Qty'].slice(5, 7) , vanName: test  });
+						if (this.warehousName.includes('TEBESSA')) {
+							element.push({ vanId: 'V0' + el['On Hand Qty'].slice(3, 5) , vanName: test  });
+						}	else {
+							element.push({ vanId: 'V0' + el['On Hand Qty'].slice(5, 7) , vanName: test  });
+						}
 						table.forEach(t => {
 							if (t[''] && t[''] !== 'Product' && t[''] !== 'PrdCat2 :') {
 								element.push({

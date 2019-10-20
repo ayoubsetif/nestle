@@ -58,7 +58,7 @@ export class VendorsSalesComponent implements OnInit {
 				const worksheet = this.excelService.readFile(fileReader);
 				const arr = XLSX.utils.sheet_to_json(worksheet, {raw: true });
 				this.vendorsSummary = _.drop(arr, 11).filter(f => f['Document Summary'].includes('Total By Salesm')).map(v => {
-					return { id: (v['Document Summary'].slice(18)).replace(' - ', '-'), total: Number((v['__EMPTY_6']).replace(',', ''))};
+					return { id: (v['Document Summary'].slice(18)).replace(' - ', '-'), total: Number((v['__EMPTY_6']).split(',').join(''))};
 				});
 			};
 			fileReader.readAsArrayBuffer(this.file);
