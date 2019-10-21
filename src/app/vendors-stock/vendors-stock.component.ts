@@ -189,7 +189,12 @@ export class VendorsStockComponent implements OnInit {
 	getEntity(prod: string , quantity: string) {
 		const cs = parseInt(quantity.split('/')[0], 10);
 		const ea = parseInt(quantity.split('/')[1], 10);
-		return cs * this.product[prod].col + ea;
+		if (prod === '12432519') {
+			return (cs * this.product[prod].col) + (ea * 6);
+		} else {
+			return cs * this.product[prod].col + ea;
+		}
+
 	}
 
 	selectVendor(event) {

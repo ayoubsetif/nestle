@@ -152,10 +152,19 @@ export class VendorsSalesComponent implements OnInit {
 	}
 
 	getQuantity(id, quantity, uom) {
-		if (uom === 'EA' || uom === 'DS') {
-			return Number(quantity);
+		// add exception for this Article
+		if (id === '12432519') {
+			if (uom === 'EA' || uom === 'DS') {
+				return Number(quantity * 6);
+			} else {
+				return this.product[id].col * quantity;
+			}
 		} else {
-			return this.product[id].col * quantity;
+			if (uom === 'EA' || uom === 'DS') {
+				return Number(quantity);
+			} else {
+				return this.product[id].col * quantity;
+			}
 		}
 	}
 
