@@ -7,6 +7,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { NgMathPipesModule } from 'ngx-pipes';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +21,7 @@ import { VendorsSalesComponent } from './vendors-sales/vendors-sales.component';
 import { DiffrenceSalesComponent } from './diffrence-sales/diffrence-sales.component';
 import { ReturnVendorComponent } from './return-vendor/return-vendor.component';
 import { VendorTransfertComponent } from './vendor-transfert/vendor-transfert.component';
+import { TradeTransactionsComponent } from './trade-transactions/trade-transactions.component';
 
 @NgModule({
 	declarations: [
@@ -29,7 +33,8 @@ import { VendorTransfertComponent } from './vendor-transfert/vendor-transfert.co
 		VendorsSalesComponent,
 		DiffrenceSalesComponent,
 		ReturnVendorComponent,
-		VendorTransfertComponent
+		VendorTransfertComponent,
+		TradeTransactionsComponent
 	],
 	imports: [
 		BrowserModule,
@@ -40,7 +45,9 @@ import { VendorTransfertComponent } from './vendor-transfert/vendor-transfert.co
 		MatFormFieldModule,
 		MatSelectModule,
 		MatTableModule,
-		NgMathPipesModule
+		NgMathPipesModule,
+		ReactiveFormsModule,
+		MatInputModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

@@ -1,0 +1,33 @@
+<h4 class="vs-title">Vente Gros</h4>
+
+<div class="vs-buttons">
+
+	<div class="vs-import">
+			<mat-form-field>
+					<textarea [formControl]="data" matInput placeholder="Past here"></textarea>
+				</mat-form-field>
+	</div>
+
+	<button mat-raised-button color="primary" (click)="verify()">Verify</button>
+
+	<div class="vs-import">
+		<button mat-raised-button color="primary" (click)="download()">Download Single Files</button>
+		<button mat-raised-button color="primary" (click)="downloadGlobal()">Download Global Sales</button>
+		<button mat-raised-button color="primary" [disabled]="true" (click)="downloadPresales()">Download Pre Sales</button>
+		<button mat-raised-button color="primary" (click)="downloadTotal()">Download Total</button>
+	</div>
+
+	<input hidden  type='file' #btn accept=".xlsx" (change)="importCustomerList($event)">
+	<button
+	class="import-config"
+		mat-raised-button
+		color="primary"
+		(click)="btn.click()"
+	>Import Customer List</button>
+</div>
+
+<diffrence-sales
+	*ngIf="compareSales.length"
+	[salesArray]="compareSales"
+></diffrence-sales>
+
