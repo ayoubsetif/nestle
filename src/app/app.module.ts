@@ -22,6 +22,8 @@ import { DiffrenceSalesComponent } from './diffrence-sales/diffrence-sales.compo
 import { ReturnVendorComponent } from './return-vendor/return-vendor.component';
 import { VendorTransfertComponent } from './vendor-transfert/vendor-transfert.component';
 import { TradeTransactionsComponent } from './trade-transactions/trade-transactions.component';
+import { VendorsInventoryComponent } from './vendors-inventory/vendors-inventory.component';
+import { InventoryTableComponent } from './inventory-table/inventory-table.component';
 
 @NgModule({
 	declarations: [
@@ -34,7 +36,9 @@ import { TradeTransactionsComponent } from './trade-transactions/trade-transacti
 		DiffrenceSalesComponent,
 		ReturnVendorComponent,
 		VendorTransfertComponent,
-		TradeTransactionsComponent
+		TradeTransactionsComponent,
+		VendorsInventoryComponent,
+		InventoryTableComponent
 	],
 	imports: [
 		BrowserModule,
