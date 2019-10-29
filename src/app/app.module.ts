@@ -24,6 +24,7 @@ import { VendorTransfertComponent } from './vendor-transfert/vendor-transfert.co
 import { TradeTransactionsComponent } from './trade-transactions/trade-transactions.component';
 import { VendorsInventoryComponent } from './vendors-inventory/vendors-inventory.component';
 import { InventoryTableComponent } from './inventory-table/inventory-table.component';
+import { StockReportComponent } from './stock-report/stock-report.component';
 
 @NgModule({
 	declarations: [
@@ -38,7 +39,8 @@ import { InventoryTableComponent } from './inventory-table/inventory-table.compo
 		VendorTransfertComponent,
 		TradeTransactionsComponent,
 		VendorsInventoryComponent,
-		InventoryTableComponent
+		InventoryTableComponent,
+		StockReportComponent
 	],
 	imports: [
 		BrowserModule,
