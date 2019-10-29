@@ -1,0 +1,10 @@
+.tab-wrapper {
+	display: flex;
+	justify-content: space-between
+}
+.not-visited, .visited {
+	width: 48%;
+	table {
+		width: 100%;
+	}
+}

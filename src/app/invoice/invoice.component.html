@@ -1,0 +1,30 @@
+<h4 class="vs-title">Invoices</h4>
+<h6>PS: Import Only One Vendor</h6>
+<div class="vi-btns">
+	<input hidden  type='file' #dmsbtn accept=".xlsx" (change)="uploadFile($event)">
+	<button mat-raised-button color="primary" (click)="dmsbtn.click()">Import Document Listing</button>
+	
+	<mat-form-field>
+		<mat-select [disabled]="!data.length" (selectionChange)="selectProduct($event)"  placeholder="Choose a product">
+			<mat-option *ngFor="let product of products" [value]="product.ids">
+				{{product.name}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+	
+	<button mat-raised-button [disabled]="!visitedClients.length" color="primary" (click)="downloadInvoiced()">Print Invoiced</button>
+	<button mat-raised-button [disabled]="!notVisitedClients.length" color="accent" (click)="downloadNotInvoiced()">Print not Invoiced</button>
+
+<input hidden  type='file' #cstbtn accept=".xlsx" (change)="uploadCustomerListing($event)">
+<button class="import-config" mat-raised-button color="primary" (click)="cstbtn.click()">Import Customer Listing</button>
+
+</div>
+
+
+
+
+<invoice-detail
+	[metaData] = metadata
+	[visitedClients] = visitedClients
+	[notVisitedClients]= notVisitedClients
+></invoice-detail>
