@@ -29,7 +29,21 @@ export class TradeTransactionsComponent implements OnInit {
 	download() {
 		const clients = this.getData();
 
-		clients.forEach(client => {
+		const groupedByOrderNumber = _.groupBy(clients, 'orderNumber');
+		const filterdClients = [];
+		Object.keys(groupedByOrderNumber).map(m => {
+			const groupedAmount = groupedByOrderNumber[m].map(k => Number(k['amount'].split(',').join('')));
+			const totalAmount = _.reduce(groupedAmount, function(a, b) { return a + b; }, 0);
+
+			filterdClients.push({
+				client: groupedByOrderNumber[m][0]['client'],
+				vendor: groupedByOrderNumber[m][0]['vendor'],
+				products: _.flatten(groupedByOrderNumber[m].map(k => k['products'])),
+				amount: totalAmount
+			});
+		});
+
+		filterdClients.forEach(client => {
 			client.products.unshift(['Code Article', 'Article', 'Quantité conditionnée ', 'Quantité', 'Prix unitaire', 'Sous-total'  ]);
 			const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(client.products);
 
@@ -136,13 +150,27 @@ export class TradeTransactionsComponent implements OnInit {
 
 	verify() {
 		const clients =	JSON.parse(JSON.stringify(this.getData()));
-		clients.forEach(client => {
+		const groupedByOrderNumber = _.groupBy(clients, 'orderNumber');
+		const filterdClients = [];
+		Object.keys(groupedByOrderNumber).map(m => {
+			const groupedAmount = groupedByOrderNumber[m].map(k => Number(k['amount'].split(',').join('')));
+			const totalAmount = _.reduce(groupedAmount, function(a, b) { return a + b; }, 0);
+
+			filterdClients.push({
+				client: groupedByOrderNumber[m][0]['client'],
+				vendor: groupedByOrderNumber[m][0]['vendor'],
+				products: _.flatten(groupedByOrderNumber[m].map(k => k['products'])),
+				amount: totalAmount
+			});
+		});
+
+		filterdClients.forEach(client => {
 			const calculated = _.reduce(client.products.map(m => m[3] * m[4]), function(a, b) { return a + b; }, 0);
 			this.compareSales.push({
 				id: client.client,
-				totalDocumentSummary: Number(client.amount.split(',').join('')),
+				totalDocumentSummary: client.amount,
 				totalSales: calculated,
-				Diffrence: calculated - Number(client.amount.split(',').join(''))
+				Diffrence: calculated - client.amount
 			});
 		});
 		const totalDS = _.reduce(this.compareSales.map(m => m['totalDocumentSummary']), function(a, b) { return a + b; }, 0);
@@ -170,9 +198,10 @@ export class TradeTransactionsComponent implements OnInit {
 			const lastIndex = chunks.indexOf(chunks.find(f => f.includes('Total Promotion')));
 			const productList = _.slice(chunks, firstIndex + 1, lastIndex);
 			const amount = chunks.indexOf(chunks.find(f => f.includes('Total Amt :')));
-
+			const orderNumber = chunks.find(f => f.includes('ORDER NUMBER')).split('ORDER NUMBER :')[1];
 			productList.forEach(ch => {
-				if (!ch.includes('DUMP')) {
+				// Test after for when there is dump and undefined
+				if (ch !== 'undefined' && !ch.includes('DUMP')) {
 					products.push([
 						this.separateString(ch).id,
 						this.separateString(ch).name,
@@ -193,12 +222,17 @@ export class TradeTransactionsComponent implements OnInit {
 				client: this.trimClientName(chunks[21]) ,
 				vendor:	chunks[0],
 				products: products,
-				amount: chunks[amount - 2]
+				orderNumber: orderNumber,
+				amount: this.getAmout(chunks[amount - 2])
 			});
 			prods.push(totalProducts);
 		});
 		this.totalProducts = prods;
 		return clients;
+	}
+
+	getAmout(value) {
+		if (value) { return value; } else { return '0'; }
 	}
 
 	trimClientName(name) {
