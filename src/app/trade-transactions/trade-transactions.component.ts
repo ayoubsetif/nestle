@@ -62,6 +62,10 @@ export class TradeTransactionsComponent implements OnInit {
 
 		clients.forEach(client => {
 			client.products.forEach(sale => {
+				if (!vendors[client.client]) {
+					console.error('client Erroné ==>', client);
+					this.snackBar.open(`Customer not found : ${client.client}`, 'Ok', { duration : 7000 });
+				}
 				sale.unshift(
 					vendors[client.client]['Depot'], 'Nestlé', vendors[client.client]['vendeur'],
 					vendors[client.client]['codeClient'], vendors[client.client]['client'],
