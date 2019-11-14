@@ -17,9 +17,9 @@ const routes: Routes = [
 	{ component: VendorsSalesComponent, path: 'vendors-sales' },
 	{ component: VendorTransfertComponent, path: 'vendors-transfert' },
 	{ component: TradeTransactionsComponent, path: 'trade-transactions' },
-	{ component: VendorsInventoryComponent, path: 'setif/vendors-inventory' },
+	{ component: VendorsInventoryComponent, path: 'vendors-inventory' },
 	{ component: StockReportComponent, path: 'setif/stock-report' },
-	{ component: InvoiceComponent, path: 'setif/invoices' },
+	{ component: InvoiceComponent, path: 'invoices' },
 ];
 
 @NgModule({
