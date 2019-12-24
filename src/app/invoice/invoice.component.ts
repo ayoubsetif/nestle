@@ -15,7 +15,8 @@ export class InvoiceComponent implements OnInit {
 	products = [
 		{ name: 'RTD', ids: [ '12360460' ] },
 		{ name: 'FCMP', ids: [ '12286065', '12292453', '12199846', '9702002', '12378002' ]},
-		{ name: '3EN1', ids: [ '12272044' ] },
+		{ name: '3EN1 ANCIEN', ids: [ '12272044' ] },
+		{ name: '3EN1 Promo', ids: [ '12427772', '12427710' ] },
 		{ name: 'JUNIOR 350', ids: [ '12305319' ] },
 		{ name: 'LCS', ids: [ '12276393' ] },
 		{ name: 'LCS CARAMEL', ids: [ '12240504' ] }
