@@ -49,5 +49,6 @@ export const product = {
 	'12427710': {col: 12, tva: 1.19 }, // 3en1 12
 	'12386372': {col: 9, tva: 1.09 }, // cereleac InfWheat
 	'12391379': {col: 9, tva: 1.09 }, // cerelac WheatHoney
-	'12391380': {col: 9, tva: 1.09 } // cerelac WheatDate
+	'12391380': {col: 9, tva: 1.09 }, // cerelac WheatDate
+  '12379885': {col: 12, tva: 1.19 } // gold 2
 };
