@@ -19,7 +19,8 @@ export class InvoiceComponent implements OnInit {
 		{ name: '3EN1 Promo', ids: [ '12427772', '12427710' ] },
 		{ name: 'JUNIOR 350', ids: [ '12305319' ] },
 		{ name: 'LCS', ids: [ '12276393' ] },
-		{ name: 'LCS CARAMEL', ids: [ '12240504' ] }
+		{ name: 'LCS CARAMEL', ids: [ '12240504' ] },
+		{ name: 'GUIGOZ3', ids: [ '12381799' ] }
 	];
 	data = [];
 	metadata = {};
