@@ -13,13 +13,21 @@ import { product } from '../utils/products';
 export class StockReportComponent implements OnInit {
 	file: File;
 	dmsVStock = [];
+	product: any = [];
 
 	constructor(
 		private snackBar: MatSnackBar,
 		private excelService: ExcelManipulationService
 		) { }
 
-	ngOnInit() { }
+	ngOnInit() {
+		const prods =  JSON.parse(localStorage.getItem('prodconfig'));
+		if(!prods || prods.length === 0) {
+			this.product = product;
+		}else {
+			this.product = prods;
+		}
+	}
 
 	uploadFile(event) {
 		this.file = event.target.files[0];
@@ -87,7 +95,7 @@ export class StockReportComponent implements OnInit {
 	download() {
 		const vendors = _.orderBy(this.dmsVStock, 'vanId', 'asc');
 		const stock = [];
-		const products = Object.keys(product).map(m => m);
+		const products = Object.keys(this.product).map(m => m);
 
 		products.forEach(id => {
 			vendors.forEach(v => {

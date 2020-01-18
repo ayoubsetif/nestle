@@ -14,7 +14,8 @@ export class VendorTransfertComponent implements OnInit {
 	file: File;
 	vendorsList = [];
 	rawData = [];
-	product = product;
+	//product = product;
+	product: any = [];
 	transfert = [];
 	vendors = {};
 
@@ -25,6 +26,12 @@ export class VendorTransfertComponent implements OnInit {
 
 	ngOnInit() {
 		this.vendors =  JSON.parse(localStorage.getItem('config'));
+		const prods =  JSON.parse(localStorage.getItem('prodconfig'));
+		if(!prods || prods.length === 0) {
+			this.product = product;
+		}else {
+			this.product = prods;
+		}
 	}
 
 	uploadFile(event) {

@@ -13,7 +13,8 @@ import { ExcelManipulationService } from '../app-services/excel-manipulation.ser
 })
 export class TradeTransactionsComponent implements OnInit {
 	data = new FormControl('');
-	product = product;
+	//product = product;
+	product: any = [];
 	file: File;
 	compareSales = [];
 	totalProducts = [];
@@ -24,6 +25,12 @@ export class TradeTransactionsComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+		const prods =  JSON.parse(localStorage.getItem('prodconfig'));
+		if(!prods || prods.length === 0) {
+			this.product = product;
+		}else {
+			this.product = prods;
+		}
 	}
 
 	download() {
@@ -202,7 +209,16 @@ export class TradeTransactionsComponent implements OnInit {
 			const lastIndex = chunks.indexOf(chunks.find(f => f.includes('Total Promotion')));
 			const productList = _.slice(chunks, firstIndex + 1, lastIndex);
 			const amount = chunks.indexOf(chunks.find(f => f.includes('Total Amt :')));
-			const orderNumber = chunks.find(f => f.includes('ORDER NUMBER')).split('ORDER NUMBER :')[1];
+
+			let orderNumber = null;
+
+			if(chunks.find(f => f.includes('ORDER NUMBER'))) {
+				orderNumber = chunks.find(f => f.includes('ORDER NUMBER')).split('ORDER NUMBER :')[1];
+
+			}
+			if(chunks.find(f => f.includes('INVOICE NUMBER'))) {
+				orderNumber = chunks.find(f => f.includes('INVOICE NUMBER')).split('INVOICE NUMBER :')[1];
+			}
 			productList.forEach(ch => {
 				// Test after for when there is dump and undefined
 				if (ch !== 'undefined' && !ch.includes('DUMP')) {

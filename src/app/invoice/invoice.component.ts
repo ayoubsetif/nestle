@@ -3,7 +3,6 @@ import { MatSnackBar } from '@angular/material';
 import { ExcelManipulationService } from '../app-services/excel-manipulation.service';
 import * as XLSX from 'xlsx';
 import * as _ from 'lodash';
-// import { clients } from '../utils/clients';
 
 @Component({
 	selector: 'invoice',

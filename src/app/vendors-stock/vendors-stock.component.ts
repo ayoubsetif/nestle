@@ -19,7 +19,8 @@ export class VendorsStockComponent implements OnInit {
 	) { }
 
 	file: File;
-	product = product;
+	//product = product;
+	product: any = [];
 	dmsVStock = [];
 	vanIds = [];
 	erpVStock = [];
@@ -28,6 +29,12 @@ export class VendorsStockComponent implements OnInit {
 	selectedVan = [];
 
 	ngOnInit() {
+		const prods =  JSON.parse(localStorage.getItem('prodconfig'));
+		if(!prods || prods.length === 0) {
+			this.product = product;
+		}else {
+			this.product = prods;
+		}
 	}
 
 	uploadDmsFile(event) {

@@ -18,7 +18,8 @@ export class VendorsSalesComponent implements OnInit {
 	sales = [];
 	rawData = [];
 	compareArray = new ReplaySubject<any[]>(1);
-	product = product;
+	//product = product;
+	product: any = [];
 	vendorsReturn = [];
 	vendors = {};
 
@@ -29,6 +30,12 @@ export class VendorsSalesComponent implements OnInit {
 
 	ngOnInit() {
 		this.vendors =  JSON.parse(localStorage.getItem('config'));
+		const prods =  JSON.parse(localStorage.getItem('prodconfig'));
+		if(!prods || prods.length === 0) {
+			this.product = product;
+		}else {
+			this.product = prods;
+		}
 	}
 
 	uploadFile(event) {
