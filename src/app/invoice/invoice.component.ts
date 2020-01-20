@@ -126,7 +126,7 @@ export class InvoiceComponent implements OnInit {
 		}
 	}
 
-	selectProduct(event) {
+	selectProduct() {
 		const customerList = [];
 		this.products.forEach(id => {
 			this.data.filter(f => f['_6'] === id.id).forEach(c => {
