@@ -13,11 +13,7 @@
 	</mat-form-field>-->
 
 	<mat-form-field class="example-chip-list" hintLabel="Entrer les codes des produits" >
-		<mat-chip-list
-			[disabled]="!data.length"
-			#chipList aria-label="Fruit selection"
-			(selectionChange)="onChipSelect($event)"
-			(change)="onChange($event)">
+		<mat-chip-list [disabled]="!data.length" #chipList aria-label="Fruit selection">
 		  <mat-chip
 			*ngFor="let product of products"
 			[selectable]="selectable"
