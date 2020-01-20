@@ -23,6 +23,7 @@
 	<div class="vs-import">
 		<button class="group-sales" mat-raised-button color="primary" (click)="download()" [disabled]="!sales.length">Download Single Files</button>
 		<button class="group-sales" mat-raised-button color="primary" (click)="downloadGroupedSales()" [disabled]="!sales.length || !vendors">Download Grouped Sales</button>
+		<button class="group-sales" mat-raised-button color="primary" (click)="downloadTotal()" [disabled]="!sales.length || !vendors">Download Total Quantity</button>
 	</div>
 
 </div>

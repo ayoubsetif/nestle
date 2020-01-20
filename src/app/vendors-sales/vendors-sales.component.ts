@@ -108,7 +108,7 @@ export class VendorsSalesComponent implements OnInit {
 		const sale = [];
 		const Vreturn = [];
 		event.value.forEach(v => {
-			const aSale = { id: v, sales: []};
+			const aSale = { id: v, sales: [], globalSales: []};
 			const ss = [];
 			this.rawData.filter(f => f['_9'] === v).forEach(s => {
 				ss.push({
@@ -118,6 +118,7 @@ export class VendorsSalesComponent implements OnInit {
 					quantity: this.getQuantity(s['_6'], s['__EMPTY_9'], s['__EMPTY_10'] )
 				});
 			});
+			aSale['globalSales'] =ss;
 			Object.keys(_.groupBy(ss, 'id')).map(m => {
 				if (_.groupBy(ss, 'id')[m].length > 1) {
 					const t = _.groupBy(_.groupBy(ss, 'id')[m], 'price');
@@ -187,6 +188,26 @@ export class VendorsSalesComponent implements OnInit {
 			XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
 			/* save to file */
+			XLSX.writeFile(wb, `${v.id}.xlsx`);
+		});
+	}
+
+	downloadTotal() {
+		const vendorSales = JSON.parse(JSON.stringify(this.sales));
+		vendorSales.forEach(v => {
+			const r = [];
+			r.push(['Code Article', 'Article', 'Quantité en unité', 'Quantité en caisse ']);
+			const t =_.groupBy(v.globalSales, 'id');
+
+			Object.keys(_.groupBy(v.globalSales, 'id')).forEach(e => {
+				const aon = t[e].map(p => p['quantity']);
+				const sum = _.reduce(aon, function(a, b) { return a + b; }, 0);
+				r.push([e, t[e][0]['name'], sum, sum /this.product[e].col ])
+			});
+			const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(r);
+			const wb: XLSX.WorkBook = XLSX.utils.book_new();
+			XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+		
 			XLSX.writeFile(wb, `${v.id}.xlsx`);
 		});
 	}
