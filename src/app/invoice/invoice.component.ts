@@ -3,6 +3,12 @@ import { MatSnackBar } from '@angular/material';
 import { ExcelManipulationService } from '../app-services/excel-manipulation.service';
 import * as XLSX from 'xlsx';
 import * as _ from 'lodash';
+import { MatChipInputEvent } from '@angular/material/chips';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+
+
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material/icon';
 
 @Component({
 	selector: 'invoice',
@@ -11,7 +17,7 @@ import * as _ from 'lodash';
 })
 export class InvoiceComponent implements OnInit {
 	file: File;
-	products = [
+	/*products = [
 		{ name: 'RTD', ids: [ '12360460' ] },
 		{ name: 'FCMP', ids: [ '12286065', '12292453', '12199846', '9702002', '12378002' ]},
 		{ name: '3EN1 ANCIEN', ids: [ '12272044' ] },
@@ -20,7 +26,7 @@ export class InvoiceComponent implements OnInit {
 		{ name: 'LCS', ids: [ '12276393' ] },
 		{ name: 'LCS CARAMEL', ids: [ '12240504' ] },
 		{ name: 'GUIGOZ3', ids: [ '12381799' ] }
-	];
+	];*/
 	data = [];
 	metadata = {};
 	clients = [];
@@ -28,14 +34,49 @@ export class InvoiceComponent implements OnInit {
 	notVisitedClients = [];
 	DBClients = [];
 
+	visible = true;
+	selectable = true;
+	removable = true;
+	addOnBlur = true;
+	readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+	products = [];
+  
 	constructor(
 		private snackBar: MatSnackBar,
-		private excelService: ExcelManipulationService
-	) { }
+		private excelService: ExcelManipulationService,
+		iconRegistry: MatIconRegistry,
+		sanitizer: DomSanitizer
+	) {
+		iconRegistry.addSvgIcon(
+			'cancel',
+			sanitizer.bypassSecurityTrustResourceUrl('assets/cancel-24px.svg'));
+	}
 
 	ngOnInit() {
 		this.DBClients =  JSON.parse(localStorage.getItem('clients'));
 	}
+
+	add(event: MatChipInputEvent): void {
+		const input = event.input;
+		const value = event.value;
+	
+		if ((value || '').trim()) {
+		  this.products.push({id: value.trim()});
+		}
+
+		// Reset the input value
+		if (input) {
+		  input.value = '';
+		}
+	  }
+	
+	  remove(fruit): void {
+		const index = this.products.indexOf(fruit);
+	
+		if (index >= 0) {
+		  this.products.splice(index, 1);
+		}
+	  }
 
 	uploadFile(event) {
 		this.file = event.target.files[0];
@@ -87,8 +128,8 @@ export class InvoiceComponent implements OnInit {
 
 	selectProduct(event) {
 		const customerList = [];
-		event.value.forEach(id => {
-			this.data.filter(f => f['_6'] === id).forEach(c => {
+		this.products.forEach(id => {
+			this.data.filter(f => f['_6'] === id.id).forEach(c => {
 				customerList.push({customerId: c[''], customerName: c['_1'] });
 			});
 		});

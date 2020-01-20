@@ -4,13 +4,38 @@
 	<input hidden  type='file' #dmsbtn accept=".xlsx" (change)="uploadFile($event)">
 	<button mat-raised-button color="primary" (click)="dmsbtn.click()">Import Document Listing</button>
 	
-	<mat-form-field>
+	<!--<mat-form-field>
 		<mat-select [disabled]="!data.length" (selectionChange)="selectProduct($event)"  placeholder="Choose a product">
 			<mat-option *ngFor="let product of products" [value]="product.ids">
 				{{product.name}}
 			</mat-option>
 		</mat-select>
-	</mat-form-field>
+	</mat-form-field>-->
+
+	<mat-form-field class="example-chip-list" hintLabel="Entrer les codes des produits" >
+		<mat-chip-list
+			[disabled]="!data.length"
+			#chipList aria-label="Fruit selection"
+			(selectionChange)="onChipSelect($event)"
+			(change)="onChange($event)">
+		  <mat-chip
+			*ngFor="let product of products"
+			[selectable]="selectable"
+			[removable]="removable"
+			(removed)="remove(product)"
+			(selectionChange)="onChipSelect($event)"
+			(change)="onChange($event)"
+			>
+			{{product.id}}
+			<mat-icon matChipRemove svgIcon="cancel" *ngIf="removable">cancel</mat-icon>
+		  </mat-chip>
+		  <input [matChipInputFor]="chipList"
+				 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+				 [matChipInputAddOnBlur]="addOnBlur"
+				 (matChipInputTokenEnd)="add($event)">
+		</mat-chip-list>
+	  </mat-form-field>
+	  <button mat-raised-button color="primary" [disabled]="!products.length" (click)="selectProduct()">search</button>
 	
 	<button mat-raised-button [disabled]="!visitedClients.length" color="primary" (click)="downloadInvoiced()">Print Invoiced</button>
 	<button mat-raised-button [disabled]="!notVisitedClients.length" color="accent" (click)="downloadNotInvoiced()">Print not Invoiced</button>

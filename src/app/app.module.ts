@@ -9,7 +9,9 @@ import { MatTableModule } from '@angular/material/table';
 import { NgMathPipesModule } from 'ngx-pipes';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,7 +59,10 @@ import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.componen
 		MatTableModule,
 		NgMathPipesModule,
 		ReactiveFormsModule,
-		MatInputModule
+		MatInputModule,
+		MatChipsModule,
+		MatIconModule,
+		HttpClientModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
