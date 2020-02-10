@@ -221,7 +221,7 @@ export class TradeTransactionsComponent implements OnInit {
 			}
 			productList.forEach(ch => {
 				// Test after for when there is dump and undefined
-				if (ch !== 'undefined' && !ch.includes('DUMP')) {
+				// if (ch !== 'undefined' && !ch.includes('DUMP')) {
 					products.push([
 						this.separateString(ch).id,
 						this.separateString(ch).name,
@@ -235,7 +235,7 @@ export class TradeTransactionsComponent implements OnInit {
 						quantity: this.separateString(ch).unitQuantity,
 						price: this.separateString(ch).unitPrice
 					});
-				}
+				//}
 			});
 
 			clients.push({
