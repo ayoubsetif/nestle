@@ -41,7 +41,7 @@ export class TradeTransactionsComponent implements OnInit {
 		Object.keys(groupedByOrderNumber).map(m => {
 			const groupedAmount = groupedByOrderNumber[m].map(k => Number(k['amount'].split(',').join('')));
 			const totalAmount = _.reduce(groupedAmount, function(a, b) { return a + b; }, 0);
-
+			_.flatten(groupedByOrderNumber[m].map(k => k['products'])).forEach(r => {if(r[4] === 0) {	r[4] = 0.001 } })
 			filterdClients.push({
 				client: groupedByOrderNumber[m][0]['client'],
 				vendor: groupedByOrderNumber[m][0]['vendor'],
@@ -83,6 +83,7 @@ export class TradeTransactionsComponent implements OnInit {
 
 		const globalSales = _.flatten(clients.map(m => m.products));
 		globalSales.forEach(s => {
+			if(s[10] === 0) { s[10] = 0.001}
 			s[11] = s[9] * s[10];
 		});
 		globalSales.unshift([
