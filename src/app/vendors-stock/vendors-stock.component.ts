@@ -79,8 +79,22 @@ export class VendorsStockComponent implements OnInit {
 								});
 							}
 						});
-					} else if (test && test.includes('MN_WH')) {
-					element.push({ vanId: 'Stock' , vanName: 'DEPOT'  });
+					} else if (test && (test.includes('MN_WH') || test.includes('SD_'))) {
+					if(test.includes('MN_WH')) {
+						element.push({ vanId: 'Stock' , vanName: 'DEPOT'  });
+					}
+					if(test.includes('SD_Centre')) {
+						element.push({ vanId: 'SD_Centre' , vanName: 'DEPOT'  });
+					}
+					if(test.includes('SD_Est')) {
+						element.push({ vanId: 'SD_Est' , vanName: 'DEPOT'  });
+					}
+					if(test.includes('SD_Ouest')) {
+						element.push({ vanId: 'SD_Ouest' , vanName: 'DEPOT'  });
+					}
+					if(test.includes('SD_Superette')) {
+						element.push({ vanId: 'SD_Superette' , vanName: 'DEPOT'  });
+					}
 					table.forEach(t => {
 						if (t[''] && t[''] !== 'Product' && t[''] !== 'PrdCat2 :') {
 							element.push({
