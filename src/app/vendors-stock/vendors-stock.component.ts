@@ -84,16 +84,16 @@ export class VendorsStockComponent implements OnInit {
 						element.push({ vanId: 'Stock' , vanName: 'DEPOT'  });
 					}
 					if(test.includes('SD_Centre')) {
-						element.push({ vanId: 'SD_Centre' , vanName: 'DEPOT'  });
+						element.push({ vanId: 'NA/SD_Centre' , vanName: 'DEPOT'  });
 					}
 					if(test.includes('SD_Est')) {
-						element.push({ vanId: 'SD_Est' , vanName: 'DEPOT'  });
+						element.push({ vanId: 'NA/SD_Est' , vanName: 'DEPOT'  });
 					}
 					if(test.includes('SD_Ouest')) {
-						element.push({ vanId: 'SD_Ouest' , vanName: 'DEPOT'  });
+						element.push({ vanId: 'NA/SD_Ouest' , vanName: 'DEPOT'  });
 					}
 					if(test.includes('SD_Superette')) {
-						element.push({ vanId: 'SD_Superette' , vanName: 'DEPOT'  });
+						element.push({ vanId: 'NA/SD_Superette' , vanName: 'DEPOT'  });
 					}
 					table.forEach(t => {
 						if (t[''] && t[''] !== 'Product' && t[''] !== 'PrdCat2 :') {
