@@ -222,7 +222,7 @@ export class TradeTransactionsComponent implements OnInit {
 			}
 			productList.forEach(ch => {
 				// Test after for when there is dump and undefined
-				if (ch !== 'undefined' && !ch.includes('DUMP')) {
+				if (ch !== 'undefined' && !ch.includes('DUMP') && ch !== 'NESTLE GLORIA IMPSAC' && ch !== '26QV8(3x125g)CHAINs') {
 					products.push([
 						this.separateString(ch).id,
 						this.separateString(ch).name,
@@ -274,8 +274,8 @@ export class TradeTransactionsComponent implements OnInit {
 
 		const quantity = sep.pop();
 		const id = sep.shift();
-		const name = sep.join(' ');
-
+		let name = sep.join(' ');
+	
 		let UnitPriceAfterDiscount = 0;
 		if (value.includes(' CS')) {
 			unitQuantity = this.product[id].col * quantity;
@@ -292,6 +292,10 @@ export class TradeTransactionsComponent implements OnInit {
 			discount = value.split(' DS')[1].split(' ').map(m => m.split(',').join('')).map(k => +k);
 			const a = discount[3] * this.product[id].tva;
 			UnitPriceAfterDiscount = (a + (a * 1 / 100)) / quantity;
+		}
+
+		if(id === '12414686') {
+			name = "NESTLE GLORIA IMPSAC 26QV8(3x125g)CHAINs"
 		}
 
 		return {
