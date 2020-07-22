@@ -222,7 +222,7 @@ export class TradeTransactionsComponent implements OnInit {
 			}
 			productList.forEach(ch => {
 				// Test after for when there is dump and undefined
-				if (ch !== 'undefined' && !ch.includes('DUMP') && ch !== 'NESTLE GLORIA IMPSAC' && ch !== '26QV8(3x125g)CHAINs') {
+				if (ch !== 'undefined' && !ch.includes('DUMP') && ch !== 'NESTLE GLORIA IMPSAC' && ch !== '26QV8(3x125g)CHAINs'&& ch !== '26QV8(3x125g)CHAINS'  ) {
 					products.push([
 						this.separateString(ch).id,
 						this.separateString(ch).name,
