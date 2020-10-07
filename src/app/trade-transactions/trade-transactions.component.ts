@@ -222,20 +222,41 @@ export class TradeTransactionsComponent implements OnInit {
 			}
 			productList.forEach(ch => {
 				// Test after for when there is dump and undefined
-				if (ch !== 'undefined' && !ch.includes('DUMP') && ch !== 'NESTLE GLORIA IMPSAC' && ch !== '26QV8(3x125g)CHAINs'&& ch !== '26QV8(3x125g)CHAINS'  ) {
-					products.push([
-						this.separateString(ch).id,
-						this.separateString(ch).name,
-						'',
-						this.separateString(ch).unitQuantity,
-						this.separateString(ch).unitPrice
-					]);
-					totalProducts.push({
-						id: this.separateString(ch).id,
-						name: this.separateString(ch).name,
-						quantity: this.separateString(ch).unitQuantity,
-						price: this.separateString(ch).unitPrice
-					});
+				// vendors test after remove it
+				const vendors =  JSON.parse(localStorage.getItem('config'));
+				if(vendors['SAPA EST']) {
+					if (ch !== 'undefined' && !ch.includes('DUMP') && ch !== 'NESTLE GLORIA IMPSAC' && ch !== '26QV8(3x125g)CHAINs'&& ch !== '26QV8(3x125g)CHAINS' && ch !== 'NESTGLORIA' && ch !== 'NutriIMP+NESQCP12(500+39)PRDZ'  ) {
+						products.push([
+							this.separateString(ch).id,
+							this.separateString(ch).name,
+							'',
+							this.separateString(ch).unitQuantity,
+							this.separateString(ch).unitPrice
+						]);
+						totalProducts.push({
+							id: this.separateString(ch).id,
+							name: this.separateString(ch).name,
+							quantity: this.separateString(ch).unitQuantity,
+							price: this.separateString(ch).unitPrice
+						});
+					}
+				}
+				else {
+					if (ch !== 'undefined' && !ch.includes('DUMP') && ch !== 'NESTLE GLORIA IMPSAC' && ch !== '26QV8(3x125g)CHAINs'&& ch !== '26QV8(3x125g)CHAINS') {
+						products.push([
+							this.separateString(ch).id,
+							this.separateString(ch).name,
+							'',
+							this.separateString(ch).unitQuantity,
+							this.separateString(ch).unitPrice
+						]);
+						totalProducts.push({
+							id: this.separateString(ch).id,
+							name: this.separateString(ch).name,
+							quantity: this.separateString(ch).unitQuantity,
+							price: this.separateString(ch).unitPrice
+						});
+					}
 				}
 			});
 
@@ -296,6 +317,9 @@ export class TradeTransactionsComponent implements OnInit {
 
 		if(id === '12414686') {
 			name = "NESTLE GLORIA IMPSAC 26QV8(3x125g)CHAINs"
+		}
+		if(id === '12446623') {
+			name = "NESTGLORIA NutriIMP+NESQCP12(500+39)PRDZ"
 		}
 
 		return {
