@@ -223,7 +223,12 @@ export class TradeTransactionsComponent implements OnInit {
 			productList.forEach(ch => {
 				// Test after for when there is dump and undefined
 				const vendors =  JSON.parse(localStorage.getItem('config'));
-				if (ch !== 'undefined' && !ch.includes('DUMP') && ch !== 'NESTLE GLORIA IMPSAC' && ch !== '26QV8(3x125g)CHAINs'&& ch !== '26QV8(3x125g)CHAINS' && ch !== 'NESTGLORIA' && ch !== 'NutriIMP+NESQCP12(500+39)PRDZ'  ) {
+				if (ch !== 'undefined' && !ch.includes('DUMP') && ch !== 'NESTLE GLORIA IMPSAC'
+					&& ch !== '26QV8(3x125g)CHAINs'&& ch !== '26QV8(3x125g)CHAINS'
+					&& ch !== 'NESTGLORIA' && ch !== 'NutriIMP+NESQCP12(500+39)PRDZ'
+					&& ch !== 'FIT' && ch !== 'CHOCCerBrMP6((6+2)x23.5g)PREF6+2N9SA'
+					&& ch !== 'NESQUIK CerBr MP6((6+2)x25g)PREF6+2N9' && ch !== 'SA'
+					) {
 					products.push([
 						this.separateString(ch).id,
 						this.separateString(ch).name,
@@ -300,6 +305,12 @@ export class TradeTransactionsComponent implements OnInit {
 		}
 		if(id === '12446623') {
 			name = "NESTGLORIA NutriIMP+NESQCP12(500+39)PRDZ"
+		}
+		if(id === '12404113') {
+			name = "FIT CHOCCerBrMP6((6+2)x23.5g)PREF6+2N9SA"
+		}
+		if(id === '12401606') {
+			name = "NESQUIK CerBr MP6((6+2)x25g)PREF6+2N9SA"
 		}
 
 		return {
