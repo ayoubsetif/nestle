@@ -29,6 +29,7 @@ import { InventoryTableComponent } from './inventory-table/inventory-table.compo
 import { StockReportComponent } from './stock-report/stock-report.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
+import { NewVTComponent } from './new-vt/new-vt.component';
 
 @NgModule({
 	declarations: [
@@ -46,7 +47,8 @@ import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.componen
 		InventoryTableComponent,
 		StockReportComponent,
 		InvoiceComponent,
-		InvoiceDetailComponent
+		InvoiceDetailComponent,
+		NewVTComponent
 	],
 	imports: [
 		BrowserModule,

@@ -9,6 +9,8 @@ import { TradeTransactionsComponent } from './trade-transactions/trade-transacti
 import { VendorsInventoryComponent } from './vendors-inventory/vendors-inventory.component';
 import { StockReportComponent } from './stock-report/stock-report.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { NewVTComponent } from './new-vt/new-vt.component';
+
 
 const routes: Routes = [
 	{ component: MainComponent, path : '' },
@@ -20,6 +22,8 @@ const routes: Routes = [
 	{ component: VendorsInventoryComponent, path: 'vendors-inventory' },
 	{ component: StockReportComponent, path: 'setif/stock-report' },
 	{ component: InvoiceComponent, path: 'invoices' },
+	{ component: NewVTComponent, path: 'vt' },
+
 ];
 
 @NgModule({
