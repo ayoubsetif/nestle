@@ -32,6 +32,7 @@ import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.componen
 import { NewVTComponent } from './new-vt/new-vt.component';
 import { NewVsComponent } from './new-vs/new-vs.component';
 import { NewStockComponent } from './new-stock/new-stock.component';
+import { NewVendorsInventoryComponent } from './new-vendors-inventory/new-vendors-inventory.component';
 
 @NgModule({
 	declarations: [
@@ -52,7 +53,8 @@ import { NewStockComponent } from './new-stock/new-stock.component';
 		InvoiceDetailComponent,
 		NewVTComponent,
 		NewVsComponent,
-		NewStockComponent
+		NewStockComponent,
+		NewVendorsInventoryComponent
 	],
 	imports: [
 		BrowserModule,
