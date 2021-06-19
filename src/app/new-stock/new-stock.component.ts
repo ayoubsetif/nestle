@@ -220,6 +220,7 @@ export class NewStockComponent implements OnInit {
 	}
 
 	getEntity(prod: string , quantity: any) {
+		quantity = quantity.split(',').join('');
 		const cs = parseInt(quantity.split('/')[0], 10);
 		const ea = parseInt(quantity.split('/')[1], 10);
 		if(!this.product[prod]) {
