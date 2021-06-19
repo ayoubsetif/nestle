@@ -8,27 +8,41 @@
 		color="primary"
 		(click)="btn.click()"
 	>Import Config File</button>
+
+	<div class="version-choice">
+		<button
+			mat-raised-button
+			color="primary"
+			(click)="hideAndSeek('old')"
+		>DMS1 v8.0</button>
 	
-	<button
-		mat-raised-button
-		color="primary"
-		[routerLink]="['vendors-transfert']"
-	>Vendors Transfert
-	</button>
+		<button
+			mat-raised-button
+			color="primary"
+			(click)="hideAndSeek('new')"
+		>DMS1 v8.7</button>
+	</div>
 	
-	<button
-		mat-raised-button
-		color="primary"
-		[routerLink]="['vendors-sales']"
-	>Vendors Sales
-	</button>
+	<div class="btns" *ngIf="tab[0]">
+		<button
+			mat-raised-button
+			color="primary"
+			[routerLink]="['vendors-transfert']"
+		>Vendors Transfert
+		</button>
+		<button
+			mat-raised-button
+			color="primary"
+			[routerLink]="['vendors-sales']"
+		>Vendors Sales
+		</button>
 	
-	<button
-		mat-raised-button
-		color="primary"
-		[routerLink]="['vendors-stock']"
-	>Vendors Stock
-	</button>
+		<button
+			mat-raised-button
+			color="primary"
+			[routerLink]="['vendors-stock']"
+		>Vendors Stock
+		</button>
 
 	<button
 		mat-raised-button
@@ -38,31 +52,48 @@
 	</button>
 
 	<button
-	mat-raised-button
-	color="primary"
-	[routerLink]="['vendors-inventory']"
->Vendors Inventory
-</button>
+		mat-raised-button
+		color="primary"
+		[routerLink]="['vendors-inventory']"
+		>Vendors Inventory
+	</button>
 
-<button
-	mat-raised-button
-	color="primary"
-	[routerLink]="['invoices']"
->Invoice
-</button>
+	<button
+		mat-raised-button
+		color="primary"
+		[routerLink]="['invoices']"
+		>Invoice
+	</button>
 
-<!--<button
-mat-raised-button
-color="primary"
-[routerLink]="['vt']"
->Vendors Transfert (nouvelle)
-</button>-->
+	</div>
 
-<!--<button
-mat-raised-button
-color="primary"
-[routerLink]="['vs']"
->Vendors Sales (nouvelle)
-</button>-->
+	<div class="btns" *ngIf="tab[1]">
+		<button
+			mat-raised-button
+			[routerLink]="['vt']"
+			color="primary"
+			>Vendors Transfert
+		</button>
 
+		<button
+			mat-raised-button
+			[routerLink]="['vs']"
+			color="primary"
+			>Vendors Sales
+		</button>
+
+		<button
+			mat-raised-button
+			color="primary"
+			[routerLink]="['stock']"
+		>Vendors Stock
+		</button>
+
+		<button
+			mat-raised-button
+			color="primary"
+			[routerLink]="['trade-transactions']"
+		>Trade Transactions
+		</button>
+	</div>
 </div>

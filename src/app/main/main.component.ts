@@ -12,6 +12,7 @@ import * as _ from 'lodash';
 export class MainComponent implements OnInit {
 	file: File;
 	arrayBuffer: any;
+	tab= [false, false]
 
 	constructor(
 		private snackBar: MatSnackBar,
@@ -19,6 +20,14 @@ export class MainComponent implements OnInit {
 	) { }
 
 	ngOnInit() {}
+
+	hideAndSeek(version) {
+		if(version === "old") {
+			this.tab = [true, false]
+		}else {
+			this.tab = [false, true]
+		}
+	}
 
 	uploadConfigFile(event) {
 		this.file = event.target.files[0];
