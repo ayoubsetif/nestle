@@ -33,6 +33,7 @@ import { NewVTComponent } from './new-vt/new-vt.component';
 import { NewVsComponent } from './new-vs/new-vs.component';
 import { NewStockComponent } from './new-stock/new-stock.component';
 import { NewVendorsInventoryComponent } from './new-vendors-inventory/new-vendors-inventory.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
 	declarations: [
@@ -54,7 +55,8 @@ import { NewVendorsInventoryComponent } from './new-vendors-inventory/new-vendor
 		NewVTComponent,
 		NewVsComponent,
 		NewStockComponent,
-		NewVendorsInventoryComponent
+		NewVendorsInventoryComponent,
+		PaymentComponent
 	],
 	imports: [
 		BrowserModule,
