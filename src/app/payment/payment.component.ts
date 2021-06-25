@@ -35,7 +35,7 @@ export class PaymentComponent implements OnInit {
       Object.keys(_.groupBy(a, 'id')).map(k => {
         const aon = _.groupBy(a, 'id')[k].filter(f => f['grossAmount'] !== 0 ).map(p => p['saleAfterVAT']);
 				const sum = _.reduce(aon, function(a, b) { return a + b; }, 0);
-        f.push({id: k, Total: sum})
+        f.push({id: k, Total: sum.toFixed(2)})
       });
       this.vendorsSummary = f;
       console.log('f', f)

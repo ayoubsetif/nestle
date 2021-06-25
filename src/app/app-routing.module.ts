@@ -14,7 +14,7 @@ import { NewVsComponent  } from './new-vs/new-vs.component';
 import { NewStockComponent } from './new-stock/new-stock.component';
 import { NewVendorsInventoryComponent } from './new-vendors-inventory/new-vendors-inventory.component';
 import { PaymentComponent } from './payment/payment.component';
-
+import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
 
 const routes: Routes = [
 	{ component: MainComponent, path : '' },
@@ -30,7 +30,8 @@ const routes: Routes = [
 	{ component: NewVsComponent, path: 'vs' },
 	{ component: NewStockComponent, path: 'stock' },
 	{ component: NewVendorsInventoryComponent, path: 'new-vendors-inventory' },
-	{ component: PaymentComponent, path: 'payment' }
+	{ component: PaymentComponent, path: 'payment' },
+	{ component: NewInvoiceComponent, path: 'new-invoices' }
 ];
 
 @NgModule({
