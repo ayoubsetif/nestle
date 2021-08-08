@@ -221,6 +221,7 @@ export class TradeTransactionsComponent implements OnInit {
 				orderNumber = chunks.find(f => f.includes('INVOICE NUMBER')).split('INVOICE NUMBER :')[1];
 			}
 			productList.forEach(ch => {
+				console.log('ddd', ch)
 				// Test after for when there is dump and undefined
 				const vendors =  JSON.parse(localStorage.getItem('config'));
 				if (ch !== 'undefined' && !ch.includes('DUMP') && ch !== 'NESTLE GLORIA IMPSAC'
@@ -228,6 +229,7 @@ export class TradeTransactionsComponent implements OnInit {
 					&& ch !== 'NESTGLORIA' && ch !== 'NutriIMP+NESQCP12(500+39)PRDZ'
 					&& ch !== 'FIT' && ch !== 'CHOCCerBrMP6((6+2)x23.5g)PREF6+2N9SA'
 					&& ch !== 'NESQUIK CerBr MP6((6+2)x25g)PREF6+2N9' && ch !== 'SA'
+					&& ch !== 'CHOCAPIC BEAR Cer 14x345g PRTP BTSDIG' && ch !== 'XA'
 					) {
 					products.push([
 						this.separateString(ch).id,
@@ -311,6 +313,9 @@ export class TradeTransactionsComponent implements OnInit {
 		}
 		if(id === '12401606') {
 			name = "NESQUIK CerBr MP6((6+2)x25g)PREF6+2N9SA"
+		}
+		if(id === '12484049') {
+			name = "CHOCAPIC BEAR Cer 14x345g PRTP BTSDIG XA"
 		}
 
 		return {
