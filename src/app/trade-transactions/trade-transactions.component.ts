@@ -230,6 +230,7 @@ export class TradeTransactionsComponent implements OnInit {
 					&& ch !== 'FIT' && ch !== 'CHOCCerBrMP6((6+2)x23.5g)PREF6+2N9SA'
 					&& ch !== 'NESQUIK CerBr MP6((6+2)x25g)PREF6+2N9' && ch !== 'SA'
 					&& ch !== 'CHOCAPIC BEAR Cer 14x345g PRTP BTSDIG' && ch !== 'XA'
+					&& ch !== 'GOLD CORN FLAKES Honey' && ch !== 'Cereal14x375gN9X5'
 					) {
 					products.push([
 						this.separateString(ch).id,
@@ -316,6 +317,9 @@ export class TradeTransactionsComponent implements OnInit {
 		}
 		if(id === '12484049') {
 			name = "CHOCAPIC BEAR Cer 14x345g PRTP BTSDIG XA"
+		}
+		if(id === '12438709') {
+			name = "GOLD CORN FLAKES Honey Cereal14x375gN9X5"
 		}
 
 		return {
