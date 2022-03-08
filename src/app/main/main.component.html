@@ -8,66 +8,8 @@
 		color="primary"
 		(click)="btn.click()"
 	>Import Config File</button>
-
-	<div class="version-choice">
-		<button
-			mat-raised-button
-			color="primary"
-			(click)="hideAndSeek('old')"
-		>DMS1 v8.0</button>
 	
-		<button
-			mat-raised-button
-			color="primary"
-			(click)="hideAndSeek('new')"
-		>DMS1 v8.7</button>
-	</div>
-	
-	<div class="btns" *ngIf="tab[0]">
-		<button
-			mat-raised-button
-			color="primary"
-			[routerLink]="['vendors-transfert']"
-		>Vendors Transfert
-		</button>
-		<button
-			mat-raised-button
-			color="primary"
-			[routerLink]="['vendors-sales']"
-		>Vendors Sales
-		</button>
-	
-		<button
-			mat-raised-button
-			color="primary"
-			[routerLink]="['vendors-stock']"
-		>Vendors Stock
-		</button>
-
-	<button
-		mat-raised-button
-		color="primary"
-		[routerLink]="['trade-transactions']"
-	>Trade Transactions
-	</button>
-
-	<button
-		mat-raised-button
-		color="primary"
-		[routerLink]="['vendors-inventory']"
-		>Vendors Inventory
-	</button>
-
-	<button
-		mat-raised-button
-		color="primary"
-		[routerLink]="['invoices']"
-		>Invoice
-	</button>
-
-	</div>
-
-	<div class="btns" *ngIf="tab[1]">
+	<div class="btns">
 		<button
 			mat-raised-button
 			[routerLink]="['vt']"
@@ -117,3 +59,4 @@
 		</button>
 	</div>
 </div>
+v 1.0.1

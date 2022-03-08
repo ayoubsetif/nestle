@@ -117,8 +117,8 @@ export class NewVsComponent implements OnInit {
 				ss.push({
 					id: s['__EMPTY_5'],
 					name: s['__EMPTY_6'],
-					price: this.getUnitPrice(s['__EMPTY_5'], s['__EMPTY_16'], s['__EMPTY_19']),
-					quantity: this.getQuantity(s['__EMPTY_5'], s['__EMPTY_23'], s['__EMPTY_24'] )
+					price: this.getUnitPrice(s['__EMPTY_5'], s['__EMPTY_16'], s['__EMPTY_20']),
+					quantity: this.getQuantity(s['__EMPTY_5'], s['__EMPTY_25'], s['__EMPTY_26'] )
 
 				});
 			});
