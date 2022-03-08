@@ -47,7 +47,7 @@ export class NewStockComponent implements OnInit {
 				const worksheet = this.excelService.readFile(fileReader);
 				const vendorList = XLSX.utils.sheet_to_json(worksheet, {raw: true });
 				this.warehousName = vendorList[3]['__EMPTY'];
-				const deleteMetaText = _.drop(vendorList, 17);
+				const deleteMetaText = _.drop(vendorList, 16);
 				this.splitIntoArrays(deleteMetaText);
 				this.vanIds = this.dmsVStock.map(m => m[0]).map(f => f['vanId']);
 				console.log('dms', this.dmsVStock);
