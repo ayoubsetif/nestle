@@ -143,6 +143,14 @@ export class NewStockComponent implements OnInit {
 	splitErp(erp: any[]) {
 		const indexes = [];
 		erp.forEach(e => {
+			if(e['__EMPTY_1']) {
+				e['__EMPTY'] = e['__EMPTY_1'];
+			}
+			if(e['__EMPTY_2']) {
+				e['__EMPTY'] = e['__EMPTY_2'];
+			}
+		})
+		erp.forEach(e => {
 			this.vanIds.forEach(id => {
 				if (e['__EMPTY'].includes(id)) {
 					indexes.push(e);
