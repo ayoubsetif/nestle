@@ -13,7 +13,7 @@ import * as html2canvas from 'html2canvas';
   styleUrls: ['./new-vendors-inventory.component.scss']
 })
 export class NewVendorsInventoryComponent implements OnInit {
-  file: File;
+    file: File;
 	vendorsList = [];
 	dmsVStock = [];
 	vendorsNames = [];
@@ -36,7 +36,7 @@ export class NewVendorsInventoryComponent implements OnInit {
 			fileReader.onload = (e) => {
 				const worksheet = this.excelService.readFile(fileReader);
 				const vendorList = XLSX.utils.sheet_to_json(worksheet, {raw: true });
-				const deleteMetaText = _.drop(vendorList, 17);
+				const deleteMetaText = _.drop(vendorList, 16);
         console.log('deleteMetaText', deleteMetaText)
 				this.vendorsList = deleteMetaText.filter(f => f['Inventory Valuation '])
 					.filter(k => k['Inventory Valuation '].includes('War')).map(m => m['__EMPTY']);
