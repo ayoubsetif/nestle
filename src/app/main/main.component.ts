@@ -19,7 +19,10 @@ export class MainComponent implements OnInit {
 		private excelService: ExcelManipulationService
 	) { }
 
-	ngOnInit() {}
+	ngOnInit() {
+		localStorage.setItem('prodconfig', "");
+		localStorage.setItem('config', '');
+	}
 
 	hideAndSeek(version) {
 		if(version === "old") {
@@ -42,10 +45,10 @@ export class MainComponent implements OnInit {
 				const prodsheet = this.readFile(fileReader);
 				const prodarray = XLSX.utils.sheet_to_json(prodsheet, {raw: true });
 
-				localStorage.setItem('prodconfig', JSON.stringify(_.keyBy(prodarray, 'id')));
+				//localStorage.setItem('prodconfig', JSON.stringify(_.keyBy(prodarray, 'id')));
 
 				const config = _.keyBy(arr, 'clientDms');
-				localStorage.setItem('config', JSON.stringify(config));
+				//sslocalStorage.setItem('config', JSON.stringify(config));
 				this.snackBar.open('Configuration saved', 'Ok', { duration : 7000 });
 			};
 			fileReader.readAsArrayBuffer(this.file);
