@@ -42,11 +42,11 @@ export class NewVTComponent implements OnInit {
 			fileReader.onload = (e) => {
 				const worksheet = this.excelService.readFile(fileReader);
 				const arr = XLSX.utils.sheet_to_json(worksheet, {raw: true });
-				const deleteMetaText = _.drop(arr, 8);
-        console.log('new',deleteMetaText)
+				const deleteMetaText = _.drop(arr, 5);
+        		console.log('new',deleteMetaText)
 
 				this.rawData = deleteMetaText;
-				this.vendorsList = _.compact(_.uniq(deleteMetaText.map(m => m['__EMPTY_6'])));
+				this.vendorsList = _.compact(_.uniq(deleteMetaText.map(m => m['__EMPTY_4'])));
 			};
 			fileReader.readAsArrayBuffer(this.file);
 		}
@@ -57,12 +57,12 @@ export class NewVTComponent implements OnInit {
 
 		event.value.forEach(v => {
 			const t = { id: this.getId(v), transfer: []};
-			this.rawData.filter(f => f['__EMPTY_6'] === v).forEach(s => {
+			this.rawData.filter(f => f['__EMPTY_4'] === v).forEach(s => {
 				t['transfer'].push([
-					s['__EMPTY_8'],
-					s['__EMPTY_9'],
+					s['__EMPTY_6'],
+					s['__EMPTY_7'],
 					'',
-					this.getQuantity(s['__EMPTY_8'], s['__EMPTY_12'])
+					this.getQuantity(s['__EMPTY_6'], s['__EMPTY_10'])
 				]);
 			});
 			transfert.push(t);
