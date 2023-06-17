@@ -46,9 +46,10 @@ export class NewVsComponent implements OnInit {
 			fileReader.onload = (e) => {
 				const worksheet = this.excelService.readFile(fileReader);
 				const arr = XLSX.utils.sheet_to_json(worksheet, {raw: true });
+				console.log('arr', arr)
 				const deleteMetaText = _.drop(arr, 10);
 				this.rawData = deleteMetaText;
-				this.vendorsList = _.compact(_.uniq(deleteMetaText.map(m => m['__EMPTY_8'])));
+				this.vendorsList = _.compact(_.uniq(deleteMetaText.map(m => m['__EMPTY_9']))); //__EMPTY_8
 			};
 			fileReader.readAsArrayBuffer(this.file);
 		}
@@ -113,12 +114,12 @@ export class NewVsComponent implements OnInit {
 		event.value.forEach(v => {
 			const aSale = { id: v, sales: [], globalSales: []};
 			const ss = [];
-			this.rawData.filter(f => f['__EMPTY_8'] === v).forEach(s => {
+			this.rawData.filter(f => f['__EMPTY_9'] === v).forEach(s => { //__EMPTY_8
 				ss.push({
-					id: s['__EMPTY_5'],
-					name: s['__EMPTY_6'],
-					price: this.getUnitPrice(s['__EMPTY_5'], s['__EMPTY_16'], s['__EMPTY_20']),
-					quantity: this.getQuantity(s['__EMPTY_5'], s['__EMPTY_25'], s['__EMPTY_26'] )
+					id: s['__EMPTY_6'], //__EMPTY_5
+					name: s['__EMPTY_7'], // __EMPTY_6
+					price: this.getUnitPrice(s['__EMPTY_6'], s['__EMPTY_17'], s['__EMPTY_21']), //__EMPTY_5 __EMPTY_16 __EMPTY_20
+					quantity: this.getQuantity(s['__EMPTY_6'], s['__EMPTY_27'], s['__EMPTY_28'] )//__EMPTY_5 __EMPTY_25 __EMPTY_26
 
 				});
 			});
